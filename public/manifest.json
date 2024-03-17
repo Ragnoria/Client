@@ -1,0 +1,64 @@
+{
+  "id": "/?ragnoria=pwa",
+  "short_name": "Ragnoria",
+  "name": "Ragnoria MMORPG",
+  "description": "Begin your adventure in a fantasy world full of mystical creatures and majestic places!",
+  "categories": ["games", "entertainment"],
+  "display": "fullscreen",
+  "display_override": [
+    "window-controls-overlay"
+  ],
+  "dir": "ltr",
+  "background_color": "#39334a",
+  "theme_color": "#39334a",
+  "lang": "en",
+  "orientation": "any",
+  "start_url": "https://lozynskiadam.github.io/vite-vue-ts/dist/",
+  "scope": "https://lozynskiadam.github.io/vite-vue-ts/dist/",
+  "scope_extensions": [
+    {
+      "origin": "https://lozynskiadam.github.io"
+    }
+  ],
+  "launch_handler": {
+    "client_mode": "auto"
+  },
+  "handle_links": "preferred",
+  "related_applications": [],
+  "prefer_related_applications": true,
+  "icons": [
+    {
+      "src": "assets/icons/icon_192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots" : [
+    {
+      "src": "assets/screenshots/screenshot_wide_1.png",
+      "sizes": "1280x720",
+      "type": "image/jpg",
+      "platform": "wide"
+    },
+    {
+      "src": "assets/screenshots/screenshot_wide_2.png",
+      "sizes": "1280x720",
+      "type": "image/jpg",
+      "platform": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Title Screen",
+      "url": "/",
+      "description": "Jump to Ragnoria title screen."
+    }
+  ]
+}

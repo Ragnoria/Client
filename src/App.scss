@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css?family=Hind+Vadodara:400,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kurale&display=swap');
+
+:root {
+  touch-action: pan-x pan-y;
+  height: 100%
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #25131a;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  position: relative;
+  font-family: "Hind Vadodara", serif;
+}
+
+#app {
+  display: flex;
+  height: inherit;
+  align-items: center;
+  justify-content: center;
+  cursor: url(assets/images/cursor.png), default;
+
+  &[cursor="crosshair"] {
+    cursor: url(assets/images/cursor-crosshair.png) 11 11, crosshair;
+  }
+
+  &[cursor="pick"] {
+    cursor: url(assets/images/cursor-pick.png), pointer;
+  }
+
+  &[cursor="chest"] {
+    cursor: url(assets/images/cursor-chest.png), pointer;
+  }
+
+  &[cursor="eye"] {
+    cursor: url(assets/images/cursor-eye.png), help;
+  }
+
+  &[cursor="hand"] {
+    cursor: url(assets/images/cursor-hand.png), help;
+  }
+
+  &[cursor="gears"] {
+    cursor: url(assets/images/cursor-gears.png), help;
+  }
+}
+
+#board {
+  position: absolute;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  user-select: none;
+
+  // cropping edges
+  outline: 34px solid #25131a;
+  outline-offset: -32px;
+}
+
+#hud {
+  position: absolute;
+  pointer-events: none;
+
+  // cropping edges
+  outline: 34px solid #25131a;
+  outline-offset: -32px;
+}
+
+button {
+  all: unset;
+}

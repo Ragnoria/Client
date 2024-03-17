@@ -1,0 +1,29 @@
+[
+    {
+        "id": "energy",
+        "sprite": "effect-energy"
+    },
+    {
+        "id": "ore-hit",
+        "sprite": "effect-ore-hit"
+    },
+    {
+        "id": "yellow-sparkles",
+        "sprite": "effect-sparkles",
+        "colors": ["#ffd500"]
+    },
+    {
+        "id": "red-sparkles",
+        "sprite": "effect-sparkles",
+        "colors": ["#ff0000"]
+    },
+    {
+        "id": "blue-sparkles",
+        "sprite": "effect-sparkles",
+        "colors": ["#0000ff"]
+    },
+    {
+        "id": "blood",
+        "sprite": "effect-blood"
+    }
+]

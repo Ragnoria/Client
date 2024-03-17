@@ -1,0 +1,57 @@
+#vitality {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  z-index: 3;
+  color: #ffffff;
+  font-size: 11px;
+  text-shadow: 0 0 2px rgb(0, 0, 0);
+  width: min(50vw, 320px);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
+  padding: 1px 2px 1px 1px;
+  pointer-events: none;
+
+  .health-bar,
+  .mana-bar {
+    position: relative;
+    height: 18px;
+    line-height: 17px;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+
+    .indicator {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+    }
+
+    .label {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      text-align: center;
+    }
+  }
+
+  .health-bar {
+    width: 100%;
+    background: linear-gradient(0deg, #2f110e88 0%, #1c0b0988 100%);
+    margin-bottom: 1px;
+
+    .indicator {
+      background: linear-gradient(90deg, #AF2A27 0%, #E75743 100%);
+    }
+  }
+
+  .mana-bar {
+    width: calc(100% - 15px);
+    background: linear-gradient(0deg, #0e1d2f88 0%, #09131c88 100%);
+
+    .indicator {
+      background: linear-gradient(90deg, rgb(40, 73, 194) 0%, rgb(63, 95, 225) 100%);
+    }
+  }
+}

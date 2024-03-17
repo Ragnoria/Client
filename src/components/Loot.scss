@@ -1,0 +1,45 @@
+#loot {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  width: 200px;
+  pointer-events: none;
+  z-index: 2;
+
+  .entry {
+    display: flex;
+    color: #e7e4dd;
+    font-size: 1.1rem;
+    margin: 5px;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
+    animation-duration: 0.4s;
+    animation-name: animate-fade;
+    animation-fill-mode: backwards;
+    overflow: clip;
+
+    .image {
+      width: 32px;
+      height: 32px;
+    }
+
+    .content {
+      margin-left: 5px;
+    }
+
+    &.hiding {
+      transition: opacity 0.4s;
+      opacity: 0;
+    }
+  }
+}
+
+@keyframes animate-fade {
+  0% {
+    opacity: 0;
+    height: 0;
+  }
+  100% {
+    opacity: 1;
+    height: 32px;
+  }
+}
