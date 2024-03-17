@@ -23,7 +23,6 @@ import Renderer from "./libs/Renderer.js";
 import Creature from "./libs/Creature.js";
 import Board from "./libs/Board.js";
 import Connector from "./libs/Connector.js";
-import ConnectorMock from "./libs/ConnectorMock.js";
 import Equipment from "./components/Equipment.vue";
 import Inventory from "./components/Inventory.vue";
 import Vitality from "./components/Vitality.vue";
@@ -71,11 +70,8 @@ export default {
         emit("update-vitals", {health: 100, mana: 50, maxHealth: 100, maxMana: 100});
       });
     });
-    try {
-      await Connector.connect('token');
-    } catch {
-      await ConnectorMock.connect('token');
-    }
+
+    await Connector.connect('token');
   }
 }
 </script>

@@ -2,7 +2,6 @@ import {isPositionInRange, isSamePosition} from "../utils/position.ts";
 import Board from "./Board.js";
 import {$hero} from "../utils/globals.ts";
 import Connector from "./Connector.js";
-import ConnectorMock from "./ConnectorMock.js";
 
 export default class WebsocketRequest {
 
@@ -38,7 +37,7 @@ export default class WebsocketRequest {
             if (params.fromSlot === params.toSlot) return;
         }
 
-        ConnectorMock.emit('move-item', params);
+        Connector.emit('move-item', params);
     }
 
     static use(itemId, position = null, slot = null) {
@@ -47,7 +46,7 @@ export default class WebsocketRequest {
             if (!isPositionInRange($hero.position, position)) return;
         }
 
-        ConnectorMock.emit('use', {
+        Connector.emit('use', {
             itemId: itemId,
             position: position,
             slot: slot,
@@ -55,20 +54,20 @@ export default class WebsocketRequest {
     }
 
     static requestTiles(positions) {
-        ConnectorMock.emit('request-tiles', {
+        Connector.emit('request-tiles', {
             positions: positions,
         })
     }
 
     static equip(itemId, fromSlot) {
-        ConnectorMock.emit('equip', {
+        Connector.emit('equip', {
             itemId: itemId,
             fromSlot: fromSlot,
         })
     }
 
     static unequip(fromSlot) {
-        ConnectorMock.emit('unequip', {
+        Connector.emit('unequip', {
             fromSlot: fromSlot,
         })
     }

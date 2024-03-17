@@ -3,6 +3,7 @@ import {$hero} from "../utils/globals.ts";
 import WebsocketRequest from "./WebsocketRequest.js";
 import Creature from "./Creature.js";
 import Pointer from "./Pointer.js";
+import Item from "./Item.ts";
 
 export default class Board {
 
@@ -19,7 +20,11 @@ export default class Board {
 
         window.addEventListener("update-tiles", (event) => {
             event.detail.tiles.forEach((tile) => {
-                Board.updateTile(tile.position, tile.stack);
+                const stack = [];
+                tile.stack.forEach((entry) => {
+                    stack.push(new Item(entry.id, entry.quantity));
+                });
+                Board.updateTile(tile.position, stack);
             })
             Pointer.refreshPointer();
         });
