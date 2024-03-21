@@ -11,17 +11,17 @@ export default class Connector {
     static websocket = null;
 
     static async connect(token) {
+
+        window.addEventListener("hero-position-changed", Connector.#onPositionChange);
+        window.addEventListener("update-vitals", (event) => {
+            if (event.detail?.health === 0) emit('dead');
+        });
+
         return new Promise(function (resolve, reject) {
             Connector.websocket = new WebSocket(WEBSOCKET_URL + '?' + token);
             Connector.websocket.onmessage = Connector.onMessage;
             Connector.websocket.onclose = Connector.onClose;
             Connector.websocket.onopen = () => {
-
-                window.addEventListener("hero-position-changed", Connector.#onPositionChange);
-                window.addEventListener("update-vitals", (event) => {
-                    if (event.detail?.health === 0) emit('dead');
-                });
-
                 Connector.websocket.onerror = Connector.onError;
                 resolve();
             };
@@ -44,16 +44,18 @@ export default class Connector {
         console.log(error);
     }
 
-    static emit(event, params) {
-        if (event === 'use') return Connector.#use(params);
-        if (event === 'move-item') return Connector.#moveItem(params);
-        if (event === 'equip') return Connector.#equip(params);
-        if (event === 'unequip') return Connector.#unequip(params);
+    static transmit(action, params) {
+        if (action === 'use-object') return Connector.#useObject(params);
+        if (action === 'move-item') return Connector.#moveItem(params);
+        if (action === 'equip') return Connector.#equip(params);
+        if (action === 'unequip') return Connector.#unequip(params);
 
-        Connector.websocket.send(JSON.stringify({action: event, params: params}));
+        Connector.websocket.send(JSON.stringify({action: action, params: params}));
     }
 
-    static #use(params) {
+    static #useObject(params) {
+        Connector.websocket.send(JSON.stringify({action: 'use-object', params: params}));
+
         if (params.itemId === 6) {
             if (params.slot !== null) return;
             const stack = Board.getTileStack(params.position);
@@ -78,20 +80,6 @@ export default class Connector {
                 let slot = $inventory.getFirstSlotWithItem(14) ?? $inventory.getFirstSlotWithItem(null);
                 let quantity = $inventory.getSlot(slot).item?.quantity ?? 0;
                 emit('update-inventory-slot', {slot: slot, itemId: 14, quantity: quantity + 1});
-            }
-        }
-
-        if (params.itemId === 8) {
-            if (params.slot !== null) return;
-            SoundEffect.play('mining');
-            emit('run-effect', {position: params.position, effect: 'ore-hit'});
-
-            const quantity = rand(3);
-            if (roll(3) && quantity) {
-                emit('loot', {itemId: 10, quantity: quantity});
-                let slot = $inventory.getFirstSlotWithItem(10) ?? $inventory.getFirstSlotWithItem(null);
-                const oldQuantity = $inventory.getSlot(slot).item?.quantity ?? 0;
-                emit('update-inventory-slot', {slot: slot, itemId: 10, quantity: oldQuantity + quantity});
             }
         }
 

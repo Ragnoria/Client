@@ -18,7 +18,15 @@ export default class SoundEffect {
         sound.volumeAll = 0.2;
     }
 
+    static init() {
+        window.addEventListener("play-sound", (event) => {
+            SoundEffect.play(event.detail?.id);
+        });
+    }
+
     static play(id) {
-        sound.play(id);
+        if (navigator.userActivation.isActive) {
+            sound.play(id);
+        }
     }
 }

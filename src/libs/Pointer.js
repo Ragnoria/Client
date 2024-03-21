@@ -152,9 +152,9 @@ export default class Pointer {
         if (item.isUsable()) {
             Pointer.runEffect('pointer-cross-red');
             if (isPositionInRange($hero.position, position)) {
-                WebsocketRequest.use(item.id, position);
+                WebsocketRequest.useObject(item.id, position);
             } else {
-                Movement.setPath(Pointer.positionServer, 'use', {
+                Movement.setPath(Pointer.positionServer, 'use-object', {
                     itemId: item.id
                 });
             }

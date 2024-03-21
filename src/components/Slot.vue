@@ -26,7 +26,7 @@ export default {
     onClick() {
       if (!this.item) return;
       if (this.item.isUsable()) {
-        WebsocketRequest.use(this.item.id, null, this.id);
+        WebsocketRequest.useObject(this.item.id, null, this.id);
         return;
       }
       if (this.item.isEquipable()) {

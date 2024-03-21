@@ -202,9 +202,9 @@ export default class Movement {
             if (Movement.path === null) {
                 return;
             }
-            if (Movement.path.action === 'use' && (path.length === 2 || isPositionInRange($hero.position, Movement.path.destination))) {
+            if (Movement.path.action === 'use-object' && (path.length === 2 || isPositionInRange($hero.position, Movement.path.destination))) {
                 $hero.sprite.loop('idle-south');
-                WebsocketRequest.use(Movement.path.actionData.itemId, Movement.path.destination);
+                WebsocketRequest.useObject(Movement.path.actionData.itemId, Movement.path.destination);
                 Movement.clearPath();
                 return;
             }

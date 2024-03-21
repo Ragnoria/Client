@@ -37,16 +37,16 @@ export default class WebsocketRequest {
             if (params.fromSlot === params.toSlot) return;
         }
 
-        Connector.emit('move-item', params);
+        Connector.transmit('move-item', params);
     }
 
-    static use(itemId, position = null, slot = null) {
+    static useObject(itemId, position = null, slot = null) {
         if (position !== null) {
             if (Board.getTileTopItem(position)?.id !== itemId) return;
             if (!isPositionInRange($hero.position, position)) return;
         }
 
-        Connector.emit('use', {
+        Connector.transmit('use-object', {
             itemId: itemId,
             position: position,
             slot: slot,
@@ -54,20 +54,20 @@ export default class WebsocketRequest {
     }
 
     static requestTiles(positions) {
-        Connector.emit('request-tiles', {
+        Connector.transmit('request-tiles', {
             positions: positions,
         })
     }
 
     static equip(itemId, fromSlot) {
-        Connector.emit('equip', {
+        Connector.transmit('equip', {
             itemId: itemId,
             fromSlot: fromSlot,
         })
     }
 
     static unequip(fromSlot) {
-        Connector.emit('unequip', {
+        Connector.transmit('unequip', {
             fromSlot: fromSlot,
         })
     }

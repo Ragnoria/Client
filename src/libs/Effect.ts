@@ -19,7 +19,12 @@ export default class Effect {
                     new Effect(config);
                 });
                 window.addEventListener("run-effect", (event: any) => {
-                    Effect.get(event.detail.effect).run(event.detail.position, event.detail.onCreature ?? false);
+                    const effect = Effect.get(event.detail.effect);
+                    const positions = event.detail.positions || [event.detail.position];
+
+                    positions.forEach((position: Position) => {
+                        effect.run(position, event.detail.onCreature ?? false)
+                    });
                 });
                 resolve();
             });
